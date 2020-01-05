@@ -25,7 +25,7 @@ SECRET_KEY = 'iat^z^9v0jv!dcye)^s@ku*8lq29y5tc#3s!7*595$iz6(b+-3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['178.62.40.172']
+ALLOWED_HOSTS = ['178.62.40.172', '127.0.0.1']
 
 
 # Application definition
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'outlines_unleashed.apps.OutlinesUnleashedConfig',
+    'ou_app.apps.OutlinesUnleashedConfig',
 ]
 
 MIDDLEWARE = [

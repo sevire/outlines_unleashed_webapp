@@ -1,5 +1,5 @@
 from django import forms
-from outlines_unleashed.models import TransformationInstance
+from ou_app.models import TransformationInstance
 
 UNLEASH_CHOICES = [
     ('risk_management', 'Risk Management'),

@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class OutlinesUnleashedConfig(AppConfig):
-    name = 'outlines_unleashed'
+    name = 'ou_app'
