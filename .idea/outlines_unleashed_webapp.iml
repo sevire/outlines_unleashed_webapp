@@ -28,8 +28,7 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/templates" />
-        <option value="$MODULE_DIR$/outlines_unleashed/templates" />
-        <option value="$MODULE_DIR$/outlines_unleashed/templates/outlines_unleashed" />
+        <option value="$MODULE_DIR$/ou_app/templates" />
       </list>
     </option>
   </component>
