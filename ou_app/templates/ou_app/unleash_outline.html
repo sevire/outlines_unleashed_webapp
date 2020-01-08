@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="/unleash-outline/" method="post" enctype="multipart/form-data">
+<form action="/ou_app/unleash-outline/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_table }}
     <input type="submit" value="Submit">
