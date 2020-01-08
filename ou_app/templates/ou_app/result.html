@@ -1,0 +1,15 @@
+{% extends "ou_app/base.html" %}
+
+{% block content %}
+
+    <h1>Your Transformation</h1>
+
+    <h2>Filename: {{ transformation.file }}</h2>
+    <h2>Type: {{ transformation.transformation }}</h2>
+
+    <h1>Transformed Data</h1>
+
+    <p>{{ output_sample }}</p>
+
+
+{% endblock %}

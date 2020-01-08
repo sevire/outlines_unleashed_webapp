@@ -56,7 +56,7 @@ def unleash_outline(request):
             file_type = transformation_instance.file.url.split('.')[-1]
             file_type = file_type.lower()
             if file_type != 'opml':
-                return render(request, 'outlines_unleashed/error.html')
+                return render(request, 'ou_app/error.html')
 
             transformation_instance.save()
 
@@ -71,13 +71,21 @@ def unleash_outline(request):
             data_node = outline_node_list[1].node()
 
             extracted_data_records = data_node.extract_data_node(test_data_node_specifier_01)
+            headings = extracted_data_records[0].keys()
+            heading_string = ', '.join(headings)
+            first_line = extracted_data_records[0].values()
+            value_string = ', '.join(first_line)
+            output_sample = heading_string + "+++" + value_string
 
-            return render(request, 'outlines_unleashed/result.html', {'transformation': transformation_instance})
+            return render(request, 'ou_app/result.html', {
+                'transformation': transformation_instance,
+                'output_sample': output_sample
+            })
     else:
         form = TransformationForm
         context = {"form": form, }
-        return render(request, 'outlines_unleashed/unleash_outline.html', context)
+        return render(request, 'ou_app/unleash_outline.html', context)
 
 
 def result(request):
-    return render(request, 'outlines_unleashed/result.html')
+    return render(request, 'ou_app/result.html')
