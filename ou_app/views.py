@@ -10,6 +10,7 @@ from django.shortcuts import render
 from opml.node_matching_criteria import NodeAncestryMatchingCriteria
 from opml.outline import Outline
 
+from ou_app.utilities import data_node_output
 from outlines_unleashed_webapp import settings
 from .forms import TransformationForm
 
@@ -70,21 +71,21 @@ def unleash_outline(request):
             outline_node_list = list(outline.list_all_nodes())
             data_node = outline_node_list[1].node()
 
+            # Convert data fields into lists of fields to make easier processing by template
             extracted_data_records = data_node.extract_data_node(test_data_node_specifier_01)
-            headings = extracted_data_records[0].keys()
-            heading_string = ', '.join(headings)
-            first_line = extracted_data_records[0].values()
-            value_string = ', '.join(first_line)
-            output_sample = heading_string + "+++" + value_string
+            fields, data_records = data_node_output.extract_data_fields(extracted_data_records)
 
             return render(request, 'ou_app/result.html', {
                 'transformation': transformation_instance,
-                'output_sample': output_sample
+                'data_records': data_records,
+                'fields': fields
             })
-    else:
+    elif request.method == "GET":
         form = TransformationForm
         context = {"form": form, }
         return render(request, 'ou_app/unleash_outline.html', context)
+    else:
+        raise ValueError(f'Unexpected HTTP method {request.method}')
 
 
 def result(request):

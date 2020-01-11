@@ -9,7 +9,27 @@
 
     <h1>Transformed Data</h1>
 
-    <p>{{ output_sample }}</p>
-
+    <table>
+        <thead>
+            <tr>
+            {% for field in fields %}
+                <th>
+                    {{ field }}
+                </th>
+            {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in data_records %}
+                <tr>
+                    {% for field in record %}
+                        <td>
+                            {{ field }}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}
