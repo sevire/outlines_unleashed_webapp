@@ -17,11 +17,6 @@ class TransformationForm(forms.ModelForm):
             'file',
             'transformation'
         ]
-        CHOICES = [
-            ("Option 1", "PPT"),
-            ("Option 2", "risk_01"),
-            ("Option 3", "risk_02")
-        ]
         widgets = {
             'transformation': Select(choices=dropdown_select_list)
         }

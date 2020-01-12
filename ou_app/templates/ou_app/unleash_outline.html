@@ -2,10 +2,16 @@
 
 {% block content %}
 
-<form action="/ou_app/unleash-outline/" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_table }}
-    <input type="submit" value="Submit">
-</form>
+    <p>
+        Select an OPML file and choose the data format specifier which goes with it.  There are currently just three
+        transformation types which are supported, but these will be added to over time.
+    </p>
+    <form action="/ou_app/unleash-outline/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
 
 {% endblock %}

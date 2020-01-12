@@ -4,12 +4,23 @@
 
     <h1>Your Transformation</h1>
 
-    <h2>Filename: {{ transformation.file }}</h2>
-    <h2>Type: {{ transformation.transformation }}</h2>
+    <table class="table">
+    <tbody>
+        <tr>
+            <td><em>Filename:</em></td>
+            <td>{{ file }}</td>
+        </tr>
+        <tr>
+            <td><em>Transformation Type</em></td>
+            <td>{{ transformation }}</td>
+        </tr>
+
+    </tbody>
+    </table>
 
     <h1>Transformed Data</h1>
 
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
             {% for field in fields %}

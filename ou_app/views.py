@@ -48,8 +48,13 @@ def unleash_outline(request):
             extracted_data_records = data_node.extract_data_node(data_node_specifier)
             fields, data_records = data_node_output.extract_data_fields(extracted_data_records)
 
+            # Get file name and trans type chosen by user (not actual filename saved) to display on result
+            filename = form.cleaned_data['file']
+            trans_type = form.cleaned_data['transformation']
+
             return render(request, 'ou_app/result.html', {
-                'transformation': transformation_instance,
+                'transformation': trans_type,
+                'file': filename,
                 'data_records': data_records,
                 'fields': fields
             })
