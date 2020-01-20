@@ -1,6 +1,6 @@
 import os
 
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse, StreamingHttpResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -8,6 +8,7 @@ from django.shortcuts import render
 
 from django.shortcuts import render
 from opml.outline import Outline
+from output_generators.ppt_output_generators import PowerPointGenerator
 
 from ou_app.data_drivers.dropdown_driver import node_specifier_powerpoint_slides, dropdown_select_list, get_specifier
 from ou_app.utilities import data_node_output
@@ -52,12 +53,22 @@ def unleash_outline(request):
             filename = form.cleaned_data['file']
             trans_type = form.cleaned_data['transformation']
 
-            return render(request, 'ou_app/result.html', {
-                'transformation': trans_type,
-                'file': filename,
-                'data_records': data_records,
-                'fields': fields
-            })
+            if trans_type == "PPT-01":
+                # Generate PowerPoint file from table
+                output_generator = PowerPointGenerator()
+                output_generator.create_power_point_skeleton(
+                    extracted_data_records,
+                    "ou_app/resources/ppt_template_01.pptx",
+                    "ou_app/resources/ppt_output_01.pptx"
+                )
+                return render(request, 'ou_app/ppt_download.html')
+            else:
+                return render(request, 'ou_app/result.html', {
+                    'transformation': trans_type,
+                    'file': filename,
+                    'data_records': data_records,
+                    'fields': fields
+                })
     elif request.method == "GET":
         form = TransformationForm
         context = {
@@ -70,3 +81,12 @@ def unleash_outline(request):
 
 def result(request):
     return render(request, 'ou_app/result.html')
+
+
+def download_ppt(request):
+    file_path = os.path.abspath("ou_app/resources/ppt_output_01.pptx")
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type='application/vnd.openxmlformats-officedocument.presentationml.presentation')
+            response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(file_path)
+            return response
