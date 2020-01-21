@@ -15,6 +15,8 @@ from ou_app.utilities import data_node_output
 from outlines_unleashed_webapp import settings
 from .forms import TransformationForm
 
+output_ppt_filepath = os.path.join(settings.BASE_DIR, "ou_app/resources/ppt_output_01.pptx")
+template_ppt_filepath = os.path.join(settings.BASE_DIR, "ou_app/resources/ppt_template_01.pptx")
 
 def unleash_outline(request):
     if request.method == 'POST':
@@ -54,8 +56,8 @@ def unleash_outline(request):
                 output_generator = PowerPointGenerator()
                 output_generator.create_power_point_skeleton(
                     data_node,
-                    "ou_app/resources/ppt_template_01.pptx",
-                    "ou_app/resources/ppt_output_01.pptx"
+                    template_ppt_filepath,
+                    output_ppt_filepath
                 )
                 return render(request, 'ou_app/ppt_download.html')
             else:
