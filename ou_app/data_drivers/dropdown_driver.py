@@ -134,7 +134,7 @@ node_specifier_risk_management_02 = {
     }
 
 dropdown_driver = [
-    ('PPT-01', 'PPT Generator', node_specifier_powerpoint_slides, None, None),
+    ('PPT-01', 'PPT Generator', node_specifier_powerpoint_slides, ('', ':'), None),
     ('Risk_01', 'Risk Management Format 1', node_specifier_risk_management_01, ('[*', '*]'), None),
     ('Risk_02', 'Risk Management Format 2', node_specifier_risk_management_02, ('[*', '*]'), None)
 ]

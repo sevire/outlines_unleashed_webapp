@@ -45,10 +45,6 @@ def unleash_outline(request):
             outline_node_list = list(outline.list_all_nodes())
             data_node = outline_node_list[1].node()
 
-            # Convert data fields into lists of fields to make easier processing by template
-            extracted_data_records = data_node.extract_data_node(data_node_specifier)
-            fields, data_records = data_node_output.extract_data_fields(extracted_data_records)
-
             # Get file name and trans type chosen by user (not actual filename saved) to display on result
             filename = form.cleaned_data['file']
             trans_type = form.cleaned_data['transformation']
@@ -57,12 +53,16 @@ def unleash_outline(request):
                 # Generate PowerPoint file from table
                 output_generator = PowerPointGenerator()
                 output_generator.create_power_point_skeleton(
-                    extracted_data_records,
+                    data_node,
                     "ou_app/resources/ppt_template_01.pptx",
                     "ou_app/resources/ppt_output_01.pptx"
                 )
                 return render(request, 'ou_app/ppt_download.html')
             else:
+                # Convert data fields into lists of fields to make easier processing by template
+                extracted_data_records = data_node.extract_data_node(data_node_specifier)
+                fields, data_records = data_node_output.extract_data_fields(extracted_data_records)
+
                 return render(request, 'ou_app/result.html', {
                     'transformation': trans_type,
                     'file': filename,
