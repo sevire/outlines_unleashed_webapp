@@ -2,14 +2,16 @@
 
 {% block content %}
 
-    <p>
-        Select an OPML file and choose the data format specifier which goes with it.  There are currently just three
-        transformation types which are supported, but these will be added to over time.
-    </p>
+    <div class="jumbotron">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+            <p class="lead">Welcome to the Outlines Unleashed Web App.</p>
+            <p>The app currently only supports three outline formats (more instructions to come). Select your outline file to upload, in .opml format, then select the layout you have uploaded and press "Submit". Your outline will be transformed into a data table or into a PowerPoint presentation.</p>
+        </div>
+    </div>
     <form action="/ou_app/unleash-outline/" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
-            {{ form.as_table }}
+            {{ form }}
         </table>
         <input type="submit" value="Submit">
     </form>

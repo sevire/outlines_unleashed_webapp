@@ -7,6 +7,7 @@ from django.shortcuts import render
 
 
 from django.shortcuts import render
+from django.template import loader
 from opml.outline import Outline
 from output_generators.ppt_output_generators import PowerPointGenerator
 
@@ -92,3 +93,8 @@ def download_ppt(request):
             response = HttpResponse(fh.read(), content_type='application/vnd.openxmlformats-officedocument.presentationml.presentation')
             response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(file_path)
             return response
+
+
+def index(request):
+    template = loader.get_template('ou_app/home.html')
+    return HttpResponse(template.render())
