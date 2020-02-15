@@ -17,6 +17,3 @@ class TransformationForm(forms.ModelForm):
             'file',
             'transformation'
         ]
-        widgets = {
-            'transformation': Select(choices=dropdown_select_list)
-        }

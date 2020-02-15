@@ -19,6 +19,7 @@ from .forms import TransformationForm
 output_ppt_filepath = os.path.join(settings.BASE_DIR, "ou_app/resources/ppt_output_01.pptx")
 template_ppt_filepath = os.path.join(settings.BASE_DIR, "ou_app/resources/ppt_template_01.pptx")
 
+
 def unleash_outline(request):
     if request.method == 'POST':
         form = TransformationForm(request.POST, request.FILES)
