@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head><!-- <editor>
+      <sidebar visible="yes" width="197"/>
+      <column name="text" width="463"/>
+    </editor> -->
+    <title>ac-fwk-workshop-slides-v01</title>
+    <dateCreated>Wed, 22 Jan 2020 09:55:08 GMT</dateCreated>
+    <expansionState>0,1,2,7,8,12</expansionState>
+    <vertScrollState>4</vertScrollState>
+    <windowTop>212</windowTop>
+    <windowLeft>0</windowLeft>
+    <windowRight>484</windowRight>
+    <windowBottom>892</windowBottom>
+  </head>
+  <body>
+    <outline text="Academic Framework: Update Session" _note="{&#10;  &quot;node-object&quot;: {&#10;    &quot;node-header&quot;: {&#10;      &quot;id&quot;: &quot;outline-to-powerpoint&quot;,&#10;      &quot;name&quot;: &quot;ACLA-outline-to-powerpoint&quot;,&#10;      &quot;type&quot;: &quot;data-object&quot;&#10;    },&#10;    &quot;data-object-descriptor&quot;: [&#10;      {&#10;        &quot;depth&quot;: 1,&#10;        &quot;ancestry&quot;: [&quot;None&quot;],&#10;        &quot;tag&quot;: &quot;None&quot;,&#10;        &quot;text&quot;: &quot;None&quot;,&#10;        &quot;primary-key&quot;: true,&#10;        &quot;field-name&quot;: &quot;Section Heading&quot;,&#10;        &quot;field-value&quot;: &quot;node-text&quot;&#10;      },&#10;      {&#10;        &quot;depth&quot;: 2,&#10;        &quot;ancestry&quot;: [&quot;None&quot;, &quot;None&quot;],&#10;        &quot;tag&quot;: &quot;None&quot;,&#10;        &quot;text&quot;: &quot;None&quot;,&#10;        &quot;primary-key&quot;: true,&#10;        &quot;field-name&quot;: &quot;Slide Heading&quot;,&#10;        &quot;field-value&quot;: &quot;node-text&quot;&#10;      },&#10;     {&#10;        &quot;depth&quot;: 3,&#10;        &quot;ancestry&quot;: [&quot;None&quot;, &quot;None&quot;, &quot;None&quot;],&#10;        &quot;tag&quot;: &quot;None&quot;,&#10;        &quot;text&quot;: &quot;None&quot;,&#10;        &quot;primary-key&quot;: false,&#10;        &quot;field-name&quot;: &quot;Bullet Text&quot;,&#10;        &quot;field-value&quot;: &quot;node-text&quot;&#10;      }&#10;    ]&#10;  }&#10;}">
+      <outline text="Welcome:">
+        <outline text="Introduction">
+          <outline text="Introduction 1"/>
+          <outline text="Introduction 2"/>
+        </outline>
+        <outline text="Agenda"/>
+        <outline text="Objectives"/>
+      </outline>
+      <outline text="Framework Refresher:">
+        <outline text="Reminder of Purpose">
+          <outline text="lkjlkjlj"/>
+        </outline>
+        <outline text="What it is"/>
+        <outline text="What it isn’t"/>
+      </outline>
+      <outline text="Summary of Feedback:">
+        <outline text="Key Themes"/>
+        <outline text="Areas for discussion"/>
+      </outline>
+      <outline text="Interactive Session 1 (theme):"/>
+      <outline text="Interactive Session 2 (theme):"/>
+      <outline text="Interactive Session 3 (theme):"/>
+      <outline text="Wrap-up:"/>
+    </outline>
+  </body>
+</opml>

@@ -40,15 +40,18 @@ def unleash_outline(request):
             outline_full_path = os.path.join(settings.BASE_DIR, transformation_instance.file.url)
 
             # Get file name and trans type chosen by user (not actual filename saved) to display on result
-            filename = form.cleaned_data['file']
-            descriptor_name = form.cleaned_data['transformation']
+            file = form.cleaned_data['file']
+            descriptor = form.cleaned_data['transformation']
 
-            if descriptor_name == "PPT-01":
+            if descriptor.name == "PPT-01":
                 # For now this is hard-coded to route through create ppt treatment.
                 # This will be changed to be more generic.
                 # ToDo: Remove hard-coding of PPT processing and replace with more general approach.
 
-                outline = Outline.from_opml(outline_full_path)
+                outline = Outline.from_opml(outline_full_path,
+                                            tag_text_delimiter=("", ":"),
+                                            tag_note_delimiter=("", ":")
+                                            )
 
                 # For testing assume that the data node is in node 1 (first node below root)
                 outline_node_list = list(outline.list_all_nodes())
@@ -63,16 +66,15 @@ def unleash_outline(request):
                 )
                 return render(request, 'ou_app/ppt_download.html')
             else:
-                # descriptor_name is a key into the data node descriptor table, so extract the record and use the JSON
+                # descriptor.name is a key into the data node descriptor table, so extract the record and use the JSON
                 # as the descriptor.  Exception is that if descriptor is PPT - hard-code to process as PPT file
                 # (for now).
 
-                descriptor_record = list(DataNodeDescriptor.objects.filter(name=descriptor_name))
-                descriptor_json = descriptor_record[0].json
-                descriptor = OutlineNode.from_json(descriptor_json)
+                descriptor_json = descriptor.json
+                descriptor_object = OutlineNode.from_json(descriptor_json)
 
-                tag_text_delimiter = tuple(descriptor['header']['tag_delimiters']['text_delimiters'])
-                tag_note_delimiter = tuple(descriptor['header']['tag_delimiters']['note_delimiters'])
+                tag_text_delimiter = tuple(descriptor_object['header']['tag_delimiters']['text_delimiters'])
+                tag_note_delimiter = tuple(descriptor_object['header']['tag_delimiters']['note_delimiters'])
 
                 outline = Outline.from_opml(outline_full_path,
                                             tag_text_delimiter=tag_text_delimiter,
@@ -83,12 +85,12 @@ def unleash_outline(request):
                 data_node = outline_node_list[1].node()
 
                 # Convert data fields into lists of fields to make easier processing by template
-                extracted_data_records = data_node.extract_data_node(descriptor)
+                extracted_data_records = data_node.extract_data_node(descriptor_object)
                 fields, data_records = data_node_output.extract_data_fields(extracted_data_records)
 
                 return render(request, 'ou_app/result.html', {
-                    'transformation': descriptor_name,
-                    'file': filename,
+                    'transformation': descriptor.name,
+                    'file': file,
                     'data_records': data_records,
                     'fields': fields
                 })
