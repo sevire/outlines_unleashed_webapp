@@ -7,8 +7,6 @@ from django.conf import settings
 from django.db.models import ForeignKey
 
 
-
-
 class DescriptorCategory(models.Model):
     category = models.CharField(max_length=30)
 
@@ -21,7 +19,7 @@ class DataNodeDescriptor(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, null=False, unique=True)  # This is our business pk (not technical pk)
     category = models.ForeignKey(DescriptorCategory,
                                  on_delete=models.SET_NULL,
                                  null=True)
@@ -29,7 +27,7 @@ class DataNodeDescriptor(models.Model):
     template = models.FileField(upload_to='template_opml')
 
     def __str__(self):
-        return f'[{self.category}] {self.name}'
+        return self.name
 
 
 class TransformationInstance(models.Model):
